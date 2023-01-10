@@ -1,13 +1,8 @@
 import { app } from "electron";
 import serve from "electron-serve";
 import { createWindow } from "./helpers";
-import { config } from "dotenv";
 
 const isProd: boolean = process.env.NODE_ENV === "production";
-
-config({
-  path: ".env",
-});
 
 if (isProd) {
   serve({ directory: "app" });
@@ -27,7 +22,7 @@ if (isProd) {
     await mainWindow.loadURL("app://./home.html");
   } else {
     const port = process.argv[2];
-    await mainWindow.loadURL(`http://localhost:${port}/home`);
+    await mainWindow.loadURL(`http://localhost:${port}/sign-in`);
     mainWindow.webContents.openDevTools();
   }
 })();
