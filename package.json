@@ -11,10 +11,14 @@
     "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
+    "@mui/icons-material": "^5.11.0",
+    "dotenv-webpack": "^8.0.1",
     "electron-serve": "^1.1.0",
     "electron-store": "^8.1.0",
+    "emotion-reset": "^3.0.1",
     "firebase": "^9.15.0",
-    "react-query": "^3.39.2"
+    "react-query": "^3.39.2",
+    "react-toastify": "^9.1.1"
   },
   "devDependencies": {
     "@emotion/cache": "^11.10.3",
