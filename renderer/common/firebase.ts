@@ -29,4 +29,14 @@ const signIn: TAuthFn = ({ email, password }) => {
 
 const logout = () => signOut(auth);
 
-export { auth, signUp, signIn, logout };
+const authErrorCode = {
+  "auth/email-already-in-use": "존재하는 이메일입니다.",
+  "auth/invalid-email": "유효하지 않는 이메일입니다.",
+  "auth/operation-not-allowed": "비활성화된 유저입니다.",
+  "auth/weak-password": "비밀번호를 엄격하게 만들어주세요.",
+  "auth/user-disabled": "비활성화된 유저입니다.",
+  "auth/user-not-found": "존재하지 않는 유저입니다.",
+  "auth/wrong-password": "비밀번호를 확인해주세요.",
+} as const;
+
+export { auth, signUp, signIn, logout, authErrorCode };
