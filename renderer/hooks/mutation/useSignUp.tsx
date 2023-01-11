@@ -14,7 +14,7 @@ const useSignUp = (replace: TReplaceFn) => {
       showToast("warning", authErrorCode[error.code]);
     },
     onSuccess: (data) => {
-      replace("/");
+      replace("/users");
       showToast("success", "회원가입 되었습니다.");
     },
   });
