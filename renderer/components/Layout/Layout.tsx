@@ -5,12 +5,14 @@ import { ILayoutProps } from "./types";
 import LayoutView from "./views/LayoutView";
 
 const Layout = ({ children }: IChildrenProps) => {
-  const { pathname } = useRouter();
+  const { pathname, query } = useRouter();
   const isNotAuthPage = !pathname.includes("sign");
+  const isOutsideChatRoom = query?.id === undefined;
+  const isVisibleHeaderAndFooter = isOutsideChatRoom && isNotAuthPage;
 
   const LayoutProps: ILayoutProps = {
     children,
-    isNotAuthPage,
+    isVisible: isVisibleHeaderAndFooter,
   };
 
   return <LayoutView {...LayoutProps}></LayoutView>;

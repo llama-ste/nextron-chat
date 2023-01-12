@@ -8,7 +8,7 @@ import useToastMessage from "../../hooks/common/useToastMessage";
 const Header = () => {
   const { replace, pathname } = useRouter();
   const showToast = useToastMessage();
-  const title = pathname.includes("users") ? "친구" : "채팅";
+  const title = pathname.includes("users") ? "유저" : "채팅";
 
   const HeaderProps: IHeaderProps = {
     onLogout: () => {

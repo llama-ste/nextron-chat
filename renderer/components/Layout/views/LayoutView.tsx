@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import AppProtect from "../../Common/AppProtect";
 import Footer from "../Footer";
 import Header from "../Header";
 import { ILayoutProps } from "../types";
@@ -20,20 +21,22 @@ const InnerWrapper = styled.div`
   width: 100%;
 `;
 
-const Content = styled.div<{ isNotAuthPage: boolean }>`
-  margin: ${({ isNotAuthPage }) => (isNotAuthPage ? "55px 0px" : "0px")};
+const Content = styled.div<{ isVisible: boolean }>`
+  margin: ${({ isVisible }) => (isVisible ? "55px 0px" : "0px")};
   height: 100%;
   width: 100%;
   overflow: scroll;
 `;
 
-const LayoutView = ({ children, isNotAuthPage }: ILayoutProps) => {
+const LayoutView = ({ children, isVisible }: ILayoutProps) => {
   return (
     <Container>
       <InnerWrapper>
-        {isNotAuthPage && <Header />}
-        <Content isNotAuthPage={isNotAuthPage}>{children}</Content>
-        {isNotAuthPage && <Footer />}
+        <AppProtect>
+          {isVisible && <Header />}
+          <Content isVisible={isVisible}>{children}</Content>
+          {isVisible && <Footer />}
+        </AppProtect>
       </InnerWrapper>
     </Container>
   );
