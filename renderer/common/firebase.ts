@@ -4,7 +4,11 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  onAuthStateChanged,
+  User,
 } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { SetStateAction, Dispatch } from "react";
 import { TAuthFn } from "./types";
 
 const firebaseConfig = {
@@ -18,6 +22,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
 
 const signUp: TAuthFn = ({ email, password }) => {
   return createUserWithEmailAndPassword(auth, email, password);
@@ -29,6 +34,10 @@ const signIn: TAuthFn = ({ email, password }) => {
 
 const logout = () => signOut(auth);
 
+const onAuthStateChange = (setUser: Dispatch<SetStateAction<null | User>>) => {
+  onAuthStateChanged(auth, (user) => setUser(user));
+};
+
 const authErrorCode = {
   "auth/email-already-in-use": "존재하는 이메일입니다.",
   "auth/invalid-email": "유효하지 않는 이메일입니다.",
@@ -39,4 +48,4 @@ const authErrorCode = {
   "auth/wrong-password": "비밀번호를 확인해주세요.",
 } as const;
 
-export { auth, signUp, signIn, logout, authErrorCode };
+export { auth, signUp, signIn, logout, authErrorCode, db, onAuthStateChange };
