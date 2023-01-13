@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { TextField, Button, Typography, IconButton } from "@mui/material";
+import { TextField, Button, Typography } from "@mui/material";
 
 import { ILoginProps } from "../types";
 
