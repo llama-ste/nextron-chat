@@ -11,8 +11,10 @@ export interface IChatListProps {
     chatId: string;
     user: ICustomUserInfo;
   }) => void;
-  chats: [string, {}][];
   onConvertDate: (timestamp: Timestamp) => string;
+  chats: [string, {}][];
+  isEmpty: boolean;
+  isNull: boolean;
 }
 
 export interface IChatRoomProps {

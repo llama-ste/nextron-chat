@@ -8,12 +8,19 @@ import {
 } from "@mui/material";
 import { IChatListProps } from "../types";
 import { ICustomUserInfo } from "../../../types/auth";
+import LoadingBar from "../../Common/Loadingbar";
+import Empty from "../../Common/Empty";
 
 const ChatListView = ({
   onGoToChatRoom,
   onConvertDate,
   chats,
+  isEmpty,
+  isNull,
 }: IChatListProps) => {
+  if (isNull) return <LoadingBar isLoading={isNull} />;
+  if (isEmpty) return <Empty text="채팅이 없습니다." />;
+
   return (
     <List>
       {chats?.map((chat) => {

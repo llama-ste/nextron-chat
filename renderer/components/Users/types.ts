@@ -10,4 +10,5 @@ export interface IUsersProps {
   usersList: ICustomUserInfo[];
   totalUser: number;
   isLoading: boolean;
+  isEmpty: boolean;
 }

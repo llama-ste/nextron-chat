@@ -12,11 +12,18 @@ const ChatList = () => {
   const [chats, setChats] = useState<[string, {}][]>(null);
   const currentUser = useContext(AuthContext);
   const { dispatch } = useContext(ChatContext);
+  const isEmpty = chats?.length === 0;
+  const isNull = chats === null;
 
   useEffect(() => {
     const unSubscribe = onSnapshot(
       doc(db, "users-chat-list", currentUser.uid),
       (doc) => {
+        if (doc.data() === undefined) {
+          setChats([]);
+          return;
+        }
+
         const sortedChats = Object.entries(doc.data()).sort(
           (a, b) => b[1]["date"] - a[1]["date"]
         );
@@ -54,6 +61,8 @@ const ChatList = () => {
     },
     onConvertDate,
     chats,
+    isEmpty,
+    isNull,
   };
 
   return <ChatListView {...chatListProps} />;

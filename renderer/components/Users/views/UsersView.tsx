@@ -10,6 +10,7 @@ import {
   Checkbox,
   Typography,
 } from "@mui/material";
+import Empty from "../../Common/Empty";
 
 import LoadingBar from "../../Common/Loadingbar";
 import { IUsersProps } from "../types";
@@ -31,10 +32,12 @@ const UsersView = ({
   onCreateGroupChatRoom,
   usersList,
   totalUser,
-  isLoading,
   groupMode,
+  isLoading,
+  isEmpty,
 }: IUsersProps) => {
   if (isLoading) return <LoadingBar isLoading={isLoading} />;
+  if (isEmpty) return <Empty text="다른 유저가 없습니다." />;
 
   return (
     <List

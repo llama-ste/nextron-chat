@@ -22,6 +22,7 @@ const Users = () => {
   const [usersList, setUsersList] = useState<ICustomUserInfo[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const showToast = useToastMessage();
+  const isEmpty = usersList.length === 0;
 
   useEffect(() => {
     ipcRenderer.on("users-list", (e, users: UserRecord[]) => {
@@ -134,6 +135,7 @@ const Users = () => {
     usersList,
     totalUser: usersList.length,
     isLoading,
+    isEmpty,
   };
 
   return <UsersView {...UsersProps} />;
