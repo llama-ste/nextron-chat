@@ -6,7 +6,7 @@ import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import { IFooterProps } from "../types";
 
 const PaperContainer = styled(Paper)`
-  position: fixed;
+  position: absolute;
   bottom: 0px;
   z-index: 1000;
   width: 100%;

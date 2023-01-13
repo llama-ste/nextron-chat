@@ -8,16 +8,19 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
   width: 100%;
 `;
 
 const InnerWrapper = styled.div`
   display: flex;
+  position: relative;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   max-width: 400px;
-  height: 100vh;
+  max-height: 600px;
+  height: 100%;
   width: 100%;
 `;
 
