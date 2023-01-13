@@ -14,6 +14,7 @@ import theme from "../lib/theme";
 import Layout from "../components/Layout/Layout";
 import GlobalStyle from "../styles/GlobalStyle";
 import { AuthProvider } from "../context/AuthContext";
+import { ChatProvider } from "../context/ChatContext";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -74,16 +75,18 @@ export default function MyApp({
         <title>Nextron Chat</title>
       </Head>
       <AuthProvider>
-        <ThemeProvider theme={theme}>
-          <QueryClientProvider client={queryClient}>
-            <ToastContainer {...toastConfig} />
-            <CssBaseline />
-            <GlobalStyle />
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </QueryClientProvider>
-        </ThemeProvider>
+        <ChatProvider>
+          <ThemeProvider theme={theme}>
+            <QueryClientProvider client={queryClient}>
+              <ToastContainer {...toastConfig} />
+              <CssBaseline />
+              <GlobalStyle />
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            </QueryClientProvider>
+          </ThemeProvider>
+        </ChatProvider>
       </AuthProvider>
     </CacheProvider>
   );
