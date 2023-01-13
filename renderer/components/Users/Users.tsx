@@ -30,12 +30,16 @@ const Users = () => {
         (user) => user.uid !== currentUser?.uid
       );
 
-      const updatedUsersList = filteredUsersList.map((user) => {
-        const avatar = user.email.slice(0, 1);
-        const nickname = user.email.split("@", 1)[0];
+      const updatedUsersList = filteredUsersList
+        .map((user) => {
+          const avatar = user.email.slice(0, 1);
+          const nickname = user.email.split("@", 1)[0];
 
-        return { avatar, nickname, uid: user.uid, email: user.email };
-      });
+          return { avatar, nickname, uid: user.uid, email: user.email };
+        })
+        .sort((a, b) => {
+          return a.nickname > b.nickname ? 1 : -1;
+        });
 
       setUsersList(updatedUsersList);
     });
