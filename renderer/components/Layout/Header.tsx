@@ -12,9 +12,10 @@ const Header = () => {
 
   const HeaderProps: IHeaderProps = {
     onLogout: () => {
-      logout();
-      replace("/sign-in");
-      showToast("success", "로그아웃 되었습니다.");
+      replace("/sign-in").then(() => {
+        logout();
+        showToast("success", "로그아웃 되었습니다.");
+      });
     },
     title,
   };
