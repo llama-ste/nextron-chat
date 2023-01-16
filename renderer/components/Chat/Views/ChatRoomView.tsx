@@ -1,10 +1,6 @@
 import {
-  Avatar,
   Button,
   IconButton,
-  ListItem,
-  ListItemAvatar,
-  ListItemText,
   Paper,
   TextField,
   Typography,
@@ -12,9 +8,10 @@ import {
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import SendIcon from "@mui/icons-material/Send";
+import styled from "@emotion/styled";
 
 import { IChatRoomProps } from "../types";
-import styled from "@emotion/styled";
+import Message from "../Message";
 
 const Container = styled.div`
   display: flex;
@@ -50,12 +47,6 @@ const Content = styled.div`
   padding: 8px 0px;
 `;
 
-const MessageWrapper = styled.div<{ isMyMessage: boolean }>`
-  margin-left: ${({ isMyMessage }) => (isMyMessage ? "45%" : "0")};
-  width: ${({ isMyMessage }) => (isMyMessage ? "55%" : "65%")};
-  margin-bottom: 6px;
-`;
-
 const Footer = styled(Paper)`
   display: flex;
   align-items: center;
@@ -76,12 +67,10 @@ const ChatRoomView = ({
   onChangeText,
   onSendMessage,
   onEnterPress,
-  onConvertDate,
   messages,
   text,
   isEmpty,
   user,
-  currentUser,
   messagesEndRef,
 }: IChatRoomProps) => {
   return (
@@ -94,45 +83,14 @@ const ChatRoomView = ({
       </Header>
       <Content>
         {messages.map((message) => {
-          const isMyMessage = currentUser.uid === message.senderId;
-          const convertedDate = onConvertDate(message.date);
-
-          return (
-            <MessageWrapper isMyMessage={isMyMessage} key={message.id}>
-              <ListItem sx={{ padding: "0px 6px" }}>
-                {!isMyMessage && (
-                  <ListItemAvatar>
-                    <Avatar>{user.avatar}</Avatar>
-                  </ListItemAvatar>
-                )}
-                <ListItemText
-                  sx={{
-                    padding: "4px 10px",
-                    borderRadius: "6px",
-                    background: `${isMyMessage ? "#fae100" : "lightgray"}`,
-                  }}
-                  primary={isMyMessage ? "" : user.nickname}
-                  secondary={message.text}
-                />
-              </ListItem>
-              <Typography
-                sx={{ paddingRight: "10px", fontSize: "12px" }}
-                textAlign="end"
-              >
-                {convertedDate}
-              </Typography>
-            </MessageWrapper>
-          );
+          return <Message key={message.id} user={user} message={message} />;
         })}
         <Box ref={messagesEndRef} />
       </Content>
       <Footer>
         <TextField
           value={text}
-          onChange={onChangeText}
-          inputProps={{
-            onKeyPress: onEnterPress,
-          }}
+          inputProps={{ onKeyPress: onEnterPress, onChange: onChangeText }}
           fullWidth
           size="small"
         />

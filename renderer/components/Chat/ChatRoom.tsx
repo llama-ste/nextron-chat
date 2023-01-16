@@ -10,11 +10,11 @@ import {
 } from "firebase/firestore";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useRef, useState } from "react";
+
 import { db } from "../../common/firebase";
 import { AuthContext } from "../../context/AuthContext";
 import { ChatContext } from "../../context/ChatContext";
 import useToastMessage from "../../hooks/common/useToastMessage";
-
 import { IChatRoomProps } from "./types";
 import ChatRoomView from "./Views/ChatRoomView";
 
@@ -51,6 +51,7 @@ const ChatRoom = () => {
   const onSendMessage = async () => {
     try {
       setText("");
+
       await updateDoc(doc(db, "chats", chatId), {
         messages: arrayUnion({
           id: uuidv4(),
@@ -86,30 +87,8 @@ const ChatRoom = () => {
     }
   };
 
-  const onEnterPress = (e) => {
-    if (isEmpty) return;
-
-    if (e.key === "Enter") onSendMessage();
-  };
-
-  const onConvertDate = (timeStapm: Timestamp) => {
-    const date = timeStapm.toDate();
-
-    const options: Intl.DateTimeFormatOptions = {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: false,
-      timeZone: "Asia/Seoul",
-    };
-
-    const convertedDate = new Intl.DateTimeFormat("ko-KR", options).format(
-      date
-    );
-
-    return convertedDate;
+  const onEnterPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && !isEmpty) onSendMessage();
   };
 
   const chatRoomProps: IChatRoomProps = {
@@ -117,12 +96,10 @@ const ChatRoom = () => {
     onChangeText: (e) => setText(e.target.value),
     onSendMessage,
     onEnterPress,
-    onConvertDate,
     messages,
     text,
     isEmpty,
     user,
-    currentUser,
     messagesEndRef,
   };
 
