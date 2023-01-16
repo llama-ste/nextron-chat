@@ -59,6 +59,8 @@ NEXT_PUBLIC_FIREBASE_APP_ID=1
 
 4. main폴더의 background.ts의 serviceAccount의 경로를 해당 파일로 바꿔줍니다.
 ```javascript
+// /main/background.ts
+
 const serviceAccount = require("/app-name-serviceAccountKey.json");
 ```
 
