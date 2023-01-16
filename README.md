@@ -75,7 +75,7 @@ $ npm run dev
 ```
 $ npm run build
 ```
-#### 📌 mac에서 다운로드 받을 경우 설정 - 보안 및 개인 정보 보호탭에서 다운로드를 허용해야 설치할 수 있습니다.
+#### 📌 설치 파일을 타인에게 전달하여 다른 유저가 mac에서 다운로드 받을 경우 설정 - 보안 및 개인 정보 보호탭에서 다운로드를 허용해야 설치할 수 있습니다.
 <img width="480" alt="스크린샷 2023-01-16 오후 2 22 43" src="https://user-images.githubusercontent.com/90495580/212604700-c8a5bc91-f0f7-4431-b0e2-f4a7e08042b6.png">
 
 
@@ -86,4 +86,4 @@ $ npm run build
 ![sign-up-in](https://user-images.githubusercontent.com/90495580/212615156-e73656fd-3974-4ff1-849d-9ac3e6014ca0.gif)
 
 ### 1:1 채팅
-![1:1 chat](https://user-images.githubusercontent.com/90495580/212614178-d9538309-1a21-4044-8d14-56dda423bd32.gif)
+![1:1 chat](https://user-images.githubusercontent.com/90495580/212616712-9e1a8828-3d8b-41c9-9f74-1cfdd2fc37c8.gif)
