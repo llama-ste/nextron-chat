@@ -1,6 +1,6 @@
-import { User } from "firebase/auth";
-import { DocumentData, Timestamp } from "firebase/firestore";
+import { Timestamp } from "firebase/firestore";
 import { MutableRefObject } from "react";
+
 import { ICustomUserInfo } from "../../types/auth";
 
 export interface IChatListProps {
@@ -17,16 +17,31 @@ export interface IChatListProps {
   isNull: boolean;
 }
 
+export interface IMessage {
+  date: Timestamp;
+  id: string;
+  senderId: string;
+  text: string;
+}
+
 export interface IChatRoomProps {
   onBack: () => void;
   onChangeText: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onSendMessage: () => void;
   onEnterPress: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-  onConvertDate: (timestamp: Timestamp) => string;
   text: string;
   isEmpty: boolean;
-  messages: DocumentData;
+  messages: IMessage[];
   user: ICustomUserInfo;
-  currentUser: User;
   messagesEndRef: MutableRefObject<HTMLDivElement>;
+}
+
+export interface IUserAndMessageProps {
+  user: ICustomUserInfo;
+  message: IMessage;
+}
+
+export interface IMessageProps extends IUserAndMessageProps {
+  isMyMessage: boolean;
+  convertedDate: string;
 }
